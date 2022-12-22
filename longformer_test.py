@@ -1,3 +1,12 @@
+## longformer_test.py
+
+###
+# Portions of this script are sourced from the article "Transformers for Long
+# Text, Code Examples with Longformer" by Christian Versloot.  His work can be
+# accessed here:
+# https://github.com/christianversloot/machine-learning-articles/blob/main/transformers-for-long-text-code-examples-with-longformer.md
+###
+
 # Import tensorflow, transformer models from huggingface, and dependencies
 import numpy as np
 import tensorflow as tf
