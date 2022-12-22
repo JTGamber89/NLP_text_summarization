@@ -29,9 +29,9 @@ tokenizer = LongformerTokenizer.from_pretrained(
 )
 
 # Provide example article/survey response
-"""
-Germany (German: Deutschland, German pronunciation: [ˈdɔʏtʃlant]), officially 
-the Federal Republic of Germany,[e] is a country at the intersection of Central 
+article = """
+Germany (German: Deutschland, officially 
+the Federal Republic of Germany, is a country at the intersection of Central 
 and Western Europe. It is situated between the Baltic and North seas to the 
 north, and the Alps to the south; covering an area of 357,022 square kilometres 
 (137,847 sq mi), with a population of over 83 million within its 16 
@@ -71,3 +71,12 @@ Germany is also a member of the United Nations, NATO, the G7, the G20, and the
 OECD. It also has the fourth-greatest number of UNESCO World Heritage Sites.
 """
 
+# Tokenize and Summarize
+input_ids = tokenizer(article, return_tensors = 'pt').input_ids
+output_ids = model.generate(input_ids)
+
+# Get the summary from the output tokens
+summary = tokenizer.decode(output_ids[0], skip_special_tokens = True)
+
+# Print summary
+print('\n', summary)
