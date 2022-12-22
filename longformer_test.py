@@ -29,7 +29,7 @@ tokenizer = LongformerTokenizer.from_pretrained(
 )
 
 # Provide example article/survey response
-article = """
+germany_article = """
 Germany (German: Deutschland, officially 
 the Federal Republic of Germany, is a country at the intersection of Central 
 and Western Europe. It is situated between the Baltic and North seas to the 
@@ -71,8 +71,38 @@ Germany is also a member of the United Nations, NATO, the G7, the G20, and the
 OECD. It also has the fourth-greatest number of UNESCO World Heritage Sites.
 """
 
+# Provide survey results (sourced from NNL's Glassdoor page)
+survey_pro = '''
+Everyone who works at NNL, either out of school or coming from another company 
+really takes to the camaraderie and sense of community at NNL. For many at NNL, 
+it is a labor of love and folks here have a genuine pride in their work and 
+that shows in the way people here interact with each other. NNL is also 
+generous in allowing employees to move between technical areas and gain a 
+breadth of experiences. Medical benefits are excellent.
+'''
+
+survey_con = '''
+This is a company rife with ineffective operations. Purely technical people 
+without business experience and without other industry exposure operate in an 
+environment lacking real consequences for poor performance. As they are the 
+sole provider of reactor design and fuel disposal to the U.S. Navy, the only 
+heat management feels is when they lay out a plan and fail to achieve the plan. 
+This is not to say that the original plan ever had merit. And the consequence 
+is merely a tongue lashing from Navy oversight. Age discrimination is rife. 
+The homogeneous (white, men) foundation of the program is retiring, which is 
+creating a massive talent loss that cannot be directly replaced. Years of 
+mismanaging talent has led to an equally poor solution - promote people in 
+their 20s and 30s to management. The employee base now has a 'double-hump' 
+with the experienced class retiring and the inexperienced class making poor 
+decisions across the board. The highly insecure and political environment has 
+a never ending stream of ineffective results.
+'''
+
+# combine the two responses to test how the model blends them in a summary
+survey_combo = survey_pro + ' ' + survey_con
+
 # Tokenize and Summarize
-input_ids = tokenizer(article, return_tensors = 'pt').input_ids
+input_ids = tokenizer(survey_con, return_tensors = 'pt').input_ids
 output_ids = model.generate(input_ids)
 
 # Get the summary from the output tokens
