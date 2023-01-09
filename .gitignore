@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+## User Added
+./Chapter_2_Using_Transformers/test_dir/*
+*.h5
