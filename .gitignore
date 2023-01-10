@@ -130,4 +130,5 @@ dmypy.json
 
 ## User Added
 ./Chapter_2_Using_Transformers/test_dir/*
+*events.*
 *.h5
